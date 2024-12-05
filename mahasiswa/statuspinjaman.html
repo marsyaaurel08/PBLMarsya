@@ -33,10 +33,10 @@
                     <img src="../img/logo.png" alt="Library Logo" style="height: 100px; width: 100px;">
                 </div>
                 <div class="nav flex-column p-3">
-                    <a href="dashboard.html" class="btn text-start mb-2 w-100 sidebar-btn" id="menu1-btn">Beranda</a>
-                    <a href="manajemen.html" class="btn text-start mb-2 w-100 sidebar-btn active" id="menu2-btn">Manajemen Buku</a>
-                    <a href="daftarpengguna.html" class="btn text-start mb-2 w-100 sidebar-btn" id="menu3-btn">Daftar Pengguna</a>
-                    <a href="daftarpinjaman.html" class="btn text-start w-100 sidebar-btn" id="menu4-btn">Daftar Pinjaman</a>
+                    <a href="dashboardmhs.html" class="btn text-start mb-2 w-100 sidebar-btn" id="menu1-btn">Beranda</a>
+                    <a href="daftarbuku.html" class="btn text-start mb-2 w-100 sidebar-btn" id="menu2-btn">Daftar Buku</a>
+                    <a href="statuspinjaman.html" class="btn text-start mb-2 w-100 sidebar-btn active" id="menu3-btn">Status Pinjaman</a>
+                    <a href="profil.html" class="btn text-start w-100 sidebar-btn" id="menu4-btn">Profil</a>
                 </div>
             </div>
 
@@ -46,34 +46,32 @@
                 <nav class="navbar navbar-expand-lg navbar-light shadow-sm border-bottom" style="background-color: #EEF1FF;">
                     <div class="container-fluid">
                         <a class="navbar-brand fw-bold" href="#">Library JTI</a>
-                        <div class="d-flex align-items-center ms-auto">
-                            <p class="fw-bold mb-0 me-2" style="font-size: 14px;">ADMIN LIBRARY JTI</p>
+                        <div class="d-flex ms-auto">
+                            <button class="btn me-2" style="height: 35px; width: 35px;">
+                                <i class="bi bi-person-circle"></i>
+                            </button>
                             <button class="btn">
                                 <i class="bi bi-box-arrow-right"></i>
                             </button>
                         </div>
                     </div>
                 </nav>
-
                 <!-- Content -->
                 <div class="p-4">
-                    <h5 class="fw-bold">MANAJEMEN BUKU</h5>
+                    <h5 class="fw-bold">STATUS PINJAMAN</h5>
                     <hr>
                     <!-- Tabel Buku -->
-                    <div class="container mt-4">
-                        <div class="d-flex justify-content-end mb-3">
-                            <a href="tambahbuku.html" class="btn btn-primary">Tambah Data</a>
-                        </div>                        
+                    <div class="table-container">
                         <table class="table table-bordered">
                             <thead class="table-light">
                                 <tr>
                                     <th>No</th>
                                     <th>Kode Buku</th>
                                     <th>Judul Buku</th>
-                                    <th>Penulis</th>
-                                    <th>Penerbit</th>
-                                    <th>Tahun</th>
-                                    <th>Aksi</th>
+                                    <th>Tanggal Pinjam</th>
+                                    <th>Tenggat Kembali</th>
+                                    <th>Tanggal Kembali</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -81,15 +79,11 @@
                                     <td>1</td>
                                     <td>0001100123</td>
                                     <td>Hujan</td>
-                                    <td>Tere Liye</td>
-                                    <td>Gramedia</td>
-                                    <td>2020</td>
-                                    <td>
-                                        <button class="btn btn-warning btn-sm me-1"><i class="bi bi-pencil-square"></i></button>
-                                        <button class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
-                                    </td>
+                                    <td>2023-12-01</td>
+                                    <td>2023-12-10</td>
+                                    <td>2023-12-15</td>
+                                    <td><span class="badge bg-danger">Belum Dikembalikan</span></td>
                                 </tr>
-                                <!-- Baris data lainnya dapat ditambahkan di sini -->
                             </tbody>
                         </table>
                     </div>
@@ -98,6 +92,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Footer -->
     <footer class="text-left bg-light py-2 shadow-sm">
@@ -109,15 +104,20 @@
 
     <!-- JavaScript to handle active state for sidebar buttons -->
     <script>
-        // Function to maintain active state
-        document.addEventListener('DOMContentLoaded', () => {
-            const currentPage = window.location.pathname.split("/").pop();
-            const sidebarButtons = document.querySelectorAll('.sidebar-btn');
-
-            sidebarButtons.forEach(button => {
-                if (button.getAttribute('href') === currentPage) {
-                    button.classList.add('active');
-                }
+        // Select all sidebar buttons
+        const sidebarButtons = document.querySelectorAll('.sidebar-btn');
+        
+        sidebarButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove 'active', 'shadow', and 'text-white' classes from all buttons
+                sidebarButtons.forEach(btn => {
+                    btn.classList.remove('active', 'shadow', 'text-white');
+                    btn.style.backgroundColor = '#EEF1FF'; // Reset to sidebar background color
+                });
+                
+                // Add 'active', 'shadow', 'text-white' and set background color to #033A7B to the clicked button
+                button.classList.add('active', 'shadow', 'text-white');
+                button.style.backgroundColor = '#033A7B'; // Set the background color to dark blue
             });
         });
     </script>
